@@ -1,0 +1,82 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="../../../assets/img/logo.png" alt="logo" style="height: 32px; object-fit: contain;"/>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="notifications-outline" style="font-size: 22px; color: #1a1a2e;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="dashboard-content">
+
+  <!-- SALUDO Y CARD DE USUARIO -->
+  <div class="hero-section">
+    <div class="user-info">
+      <p class="greeting">Hola 👋</p>
+      <h2 class="username">{{ nombreUsuario }}</h2> <!-- 👈 nombre dinámico -->
+      <p class="tagline">¿Qué quieres comer hoy?</p>
+    </div>
+    <div class="user-avatar">
+      <img src="../../../assets/img/logo.png" alt="avatar"/>
+    </div>
+  </div>
+
+  <!-- BUSCADOR -->
+  <div class="search-container">
+    <div class="search-box">
+      <ion-icon name="search-outline" class="search-icon"></ion-icon>
+      <ion-input placeholder="Buscar comida o restaurante..." class="search-input"></ion-input>
+    </div>
+  </div>
+
+  <!-- CARRUSEL DE PRODUCTOS -->
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">🍔 Productos</h3>
+      <span class="section-link">Ver todos</span>
+    </div>
+    <div class="carrusel">
+      <div class="carrusel-item" *ngFor="let producto of productos" (click)="irAProducto(producto.id)">
+        <div class="carrusel-img-container">
+          <img [src]="producto.imagen" [alt]="producto.nombre"/>
+        </div>
+        <p class="carrusel-nombre">{{ producto.nombre }}</p>
+        <p class="carrusel-precio">${{ producto.precio | number }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARRUSEL DE RESTAURANTES -->
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">🏪 Restaurantes</h3>
+      <span class="section-link">Ver todos</span>
+    </div>
+    <div class="carrusel">
+      <div class="carrusel-item restaurante-item" *ngFor="let restaurante of restaurantes" (click)="irARestaurante(restaurante.id)">
+        <div class="carrusel-img-container restaurante-img">
+          <img [src]="restaurante.imagen" [alt]="restaurante.nombre"/>
+        </div>
+        <p class="carrusel-nombre">{{ restaurante.nombre }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 80px;"></div>
+
+  <!-- BOTÓN FLOTANTE CON CONTADOR -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="fab-carrito" (click)="irA('/pages/pedidos')">
+      <img src="../../../assets/img/carrito.png" style="width: 28px; height: 28px; object-fit: contain;"/>
+      <span *ngIf="cantidadCarrito > 0" class="badge">{{ cantidadCarrito }}</span>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

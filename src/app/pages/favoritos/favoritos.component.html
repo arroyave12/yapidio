@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button> <!-- 👈 este abre el menú global -->
+    </ion-buttons>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<!-- CONTENIDO PRINCIPAL -->
+<div class="ion-page" id="main-content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Favoritos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-card>
+      <div style="display: flex; align-items: center; padding: 16px; gap: 16px;">
+        
+        <img alt="Silhouette of mountains" src="../../../assets/img/logo.png" width="80px"/>
+        
+        <ion-card-header style="padding: 0;">
+          <ion-card-subtitle>nombre de Usuario</ion-card-subtitle>
+          <ion-card-title>YAPIDIO</ion-card-title>
+        </ion-card-header>
+
+      </div>
+    </ion-card>
+
+    <ion-searchbar animated="true" placeholder="Buscador"></ion-searchbar>
+
+    <!-- 👇 AQUÍ VA EL BOTÓN FLOTANTE -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="irA('/pages/pedidos')">
+        <img src="../../../assets/img/carrito.png" style="width: 28px; height: 28px; object-fit: contain;"/>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ion-content> <!-- 👈 cierra después del fab -->
+
+</div>

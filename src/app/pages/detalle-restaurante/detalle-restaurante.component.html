@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="detalle-content">
+
+  <!-- HERO CON LOGO DEL RESTAURANTE -->
+  <div class="hero-restaurante">
+    <ion-button fill="clear" class="btn-volver" (click)="volver()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <img [src]="restaurante?.imagen" [alt]="restaurante?.nombre" class="restaurante-img"/>
+    <h1 class="restaurante-nombre">{{ restaurante?.nombre }}</h1>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="contenido" *ngIf="restaurante">
+
+    <!-- TÍTULO -->
+    <div class="seccion-header">
+      <h3 class="seccion-titulo">🍽️ Menú</h3>
+      <span class="seccion-subtitulo">{{ restaurante.productos.length }} productos</span>
+    </div>
+
+    <!-- LISTA DE PRODUCTOS -->
+    <div class="producto-card" *ngFor="let producto of restaurante.productos" (click)="irAProducto(producto)">
+      <div class="producto-img-container">
+        <img [src]="producto.imagen" [alt]="producto.nombre"/>
+      </div>
+      <div class="producto-info">
+        <h4 class="producto-nombre">{{ producto.nombre }}</h4>
+        <p class="producto-ingredientes">{{ producto.ingredientes.join(', ') }}</p>
+        <span class="producto-precio">${{ producto.precio | number }}</span>
+      </div>
+      <ion-button fill="clear" class="btn-agregar-rapido">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+  </div>
+
+</ion-content>
